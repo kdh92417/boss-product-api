@@ -175,3 +175,8 @@ SIMPLE_JWT = {
 }
 
 AUTH_USER_MODEL = "app.User"
+
+AUTHENTICATION_BACKENDS = [
+    "app.auth.PhoneNumberBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
