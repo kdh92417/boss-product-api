@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
@@ -10,6 +11,9 @@ class SignupView(CreateAPIView):
     serializer_class = SignupSerializer
     permission_classes = [AllowAny]
 
+    @extend_schema(
+        summary="회원가입",
+    )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
@@ -24,6 +28,9 @@ class SignupView(CreateAPIView):
 class LoginView(CreateAPIView):
     serializer_class = LoginSerializer
 
+    @extend_schema(
+        summary="로그인",
+    )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
@@ -43,6 +50,9 @@ class LoginView(CreateAPIView):
 class LogoutView(CreateAPIView):
     serializer_class = LogoutSerializer
 
+    @extend_schema(
+        summary="로그아웃",
+    )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
