@@ -28,3 +28,9 @@ python manage.py test app.tests.test_auth app.tests.test_product
 - 상품 리스트 조회 : /products - GET
   - param : `search`
 - 상품 수정 : /products/pk - PATCH
+
+### Swagger API Docs
+
+- Swagger API Docs : /docs
+
+![](https://github.com/kdh92417/user-product-api/assets/58774316/d3d49ccb-0338-4032-bac9-603527d3fae0)
