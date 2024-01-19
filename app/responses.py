@@ -6,7 +6,11 @@ from django.utils.deprecation import MiddlewareMixin
 class CustomResponseMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
         content_type = response.get("Content-Type")
-        if not content_type or response.get("Content-Type") != "application/json":
+        if (
+            not content_type
+            or response.get("Content-Type") != "application/json"
+            or response.data.get("openapi")
+        ):
             return response
 
         if response.status_code != 204:
