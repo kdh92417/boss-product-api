@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "app",
     "rest_framework",
     "rest_framework_simplejwt",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [(os.path.join(BASE_DIR, "app/templates", "templates"))],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -142,6 +143,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "app.exceptions.custom_exception_handler",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.CursorPagination",
     "PAGE_SIZE": 10,
@@ -180,3 +182,26 @@ AUTHENTICATION_BACKENDS = [
     "app.auth.PhoneNumberBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+
+# drf-spectacular
+
+SPECTACULAR_SETTINGS = {
+    # General schema metadata. Refer to spec for valid inputs
+    # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#openapi-object
+    "TITLE": "drf-spectacular API Document",
+    "DESCRIPTION": "Payhere API DOcs",
+    # Optional: MAY contain "name", "url", "email"
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
+    "SWAGGER_UI_SETTINGS": {
+        "dom_id": "#swagger-ui",  # required(default)
+        "layout": "BaseLayout",  # required(default)
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "filter": True,
+    },
+    "VERSION": "3.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "//unpkg.com/swagger-ui-dist@3.38.0",
+}
